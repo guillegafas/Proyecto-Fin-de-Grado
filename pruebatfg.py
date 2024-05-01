@@ -1,4 +1,8 @@
 import mysql.connector
+import math
+import yaml
+from datetime import datetime
+import qrcode
 
 def conectar_base_datos():
     # Establecer conexión con la base de datos
@@ -7,7 +11,7 @@ def conectar_base_datos():
             host="localhost",
             user="root",
             password="root",
-            database="pruebatfg"
+            database="prueba_tfg"
         )
         print("Conexión exitosa a la base de datos")
         return conexion
@@ -74,6 +78,38 @@ def menu():
     opcion = input("Ingrese el número de opción que desea: ")
     return opcion
 
+def generar_yaml_pedido(pedido):
+    # Calcular los puntos del pedido redondeando el precio total hacia arriba
+    puntos_pedido = math.ceil(pedido[1])
+
+    # Calcular la fecha actual en el formato adecuado para MySQL
+    fecha_actual = datetime.now().strftime('%Y-%m-%d %H-%M-%S')
+
+    # Generar el nombre único del archivo YAML
+    nombre_archivo = f"pedido_{fecha_actual}.yaml"
+
+    datos_pedido = {
+        'id_restaurante': 1,  # Aquí debes especificar el ID del restaurante correspondiente
+        'fecha_pedido': fecha_actual,  # Fecha actual en formato MySQL
+        'precio_total': pedido[1],  # Precio total del pedido
+        'puntos_pedido': puntos_pedido  # Puntos asociados al pedido
+    }
+
+    # Guardar el archivo YAML
+    with open(nombre_archivo, 'w') as archivo_yaml:
+        yaml.dump(datos_pedido, archivo_yaml, default_flow_style=False)
+
+    # Generar el código QR a partir del contenido del archivo YAML
+    qr = qrcode.QRCode(version=1, error_correction=qrcode.constants.ERROR_CORRECT_L, box_size=10, border=4)
+    qr.add_data(datos_pedido)
+    qr.make(fit=True)
+
+    # Guardar el código QR como imagen
+    nombre_qr = f"pedido_{fecha_actual}.png"
+    imagen_qr = qr.make_image(fill_color="black", back_color="white")
+    imagen_qr.save(nombre_qr)
+
+
 def main():
     conexion = conectar_base_datos()
     if conexion:
@@ -95,15 +131,20 @@ def main():
                     print(f"{plato[0]}. {plato[1]} - ${plato[2]}")
                 print(f"Total de la cuenta para la mesa {num_mesa}: ${cuenta_pedido[1]}")
             elif opcion == '3':
+                print("Mesas ocupadas:")
+                for mesa in mesas_ocupadas:
+                    print(f"Mesa {mesa}")
                 num_mesa = int(input("Ingrese el número de mesa para pagar la cuenta: "))
                 total_a_pagar = 0
                 for cuenta in cuentas_por_mesa:
                     if cuenta[0] == num_mesa:
                         total_a_pagar = cuenta[1]
+                        cuentas_por_mesa.remove(cuenta)
                         break
                 print(f"Total a pagar por la mesa {num_mesa}: ${total_a_pagar}")
                 mesas_ocupadas.remove(num_mesa)
-                cuentas_por_mesa.remove(cuenta)
+                # Generar YAML para el pedido y calcular puntos
+                generar_yaml_pedido([num_mesa, total_a_pagar])
             else:
                 print("Opción no válida. Por favor, seleccione una opción válida.")
 
