@@ -57,7 +57,6 @@ CREATE TABLE `menu` (
   `nombre` varchar(100) DEFAULT NULL,
   `descripcion` varchar(255) DEFAULT NULL,
   `precio` float DEFAULT NULL,
-  `puntos_asociados` int DEFAULT NULL,
   PRIMARY KEY (`id_plato`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -84,6 +83,7 @@ CREATE TABLE `pedidos` (
   `id_restaurante` int DEFAULT NULL,
   `fecha_pedido` date DEFAULT NULL,
   `precio_total` float DEFAULT NULL,
+  `num_mesa` int DEFAULT NULL,
   `puntos_pedido` int DEFAULT NULL,
   PRIMARY KEY (`id_pedido`),
   KEY `id_cliente` (`id_cliente`),
