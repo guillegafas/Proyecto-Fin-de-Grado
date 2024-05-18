@@ -92,7 +92,7 @@ if (isset($_POST['ENVIAR'])) {
         echo "Error: Rellene todos los datos";
     } else {
         // Conexión a la base de datos
-        $conexion = mysqli_connect("localhost", "root", "", "restaurante");
+        $conexion = mysqli_connect("db", "root", "test", "prueba_tfg");
         
         // Verificar si el email ya está registrado
         $email = mysqli_real_escape_string($conexion, $_POST['email']);
@@ -111,7 +111,7 @@ if (isset($_POST['ENVIAR'])) {
             $telefono = mysqli_real_escape_string($conexion, $_POST['telefono']);
             
             // Insertar los datos en la base de datos
-            $query = "INSERT INTO clientes (NOMBRE_CL, EMAIL, TLF_CL, PASS, FECHA_ALTA, PUNTOS) 
+            $query = "INSERT INTO clientes (NOMBRE, EMAIL, TLF, contrasenya, FECHA_ALTA, PUNTOS) 
                       VALUES ('$nombre', '$email', '$telefono', '$contrasena_hash', '$fecha_actual', 10)";
             
             if (mysqli_query($conexion, $query)) {
