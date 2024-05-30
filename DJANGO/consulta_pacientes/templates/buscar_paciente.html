@@ -1,0 +1,18 @@
+<!-- consulta_pacientes/templates/buscar_paciente.html -->
+<form method="post" action="{% url 'buscar_paciente' %}">
+    {% csrf_token %}
+    <label for="numero_paciente">Número de Paciente:</label>
+    <input type="text" name="numero_paciente" required>
+    <br>
+    <label for="nombre_paciente">Nombre:</label>
+    <input type="text" name="nombre_paciente" required>
+    <br>
+    <button type="submit">Buscar</button>
+</form>
+
+{% if mensaje %}
+    <p>{{ mensaje }}</p>
+{% endif %}
+
+<!-- Botón para ir al lector de QR -->
+<a href="{% url 'qr_reader' %}" class="btn btn-primary">Ir al Lector de QR</a>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nombre.restaurante</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #76a4a9;
+        }
+
+        .button {
+            background-color: #3F676B;
+            border: none;
+            color: white;
+            padding: 20px 40px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            margin: 10px 2px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .menup {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+            position: relative;
+        }
+
+        .menup2 {
+            float: left;
+        }
+
+        .menup3 {
+            float: right;
+            background-color: #3F676B;
+        }
+
+        li {
+            display: inline;
+            height: 30px;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            padding: 20px 16px;
+        }
+
+        li a:hover {
+            background-color: #111;
+        }
+
+        img.menu {  
+            width: 100%;
+            height: 600px;
+            opacity: 90%;
+            margin: auto;
+        }
+
+        .center {
+            position: absolute;
+            top: 30%;
+            left: 56%;
+            transform: translate(-70%, -50%);
+            font-size: 50px;
+            color: white;
+            text-align: center;
+        }
+
+        .text {
+            color: whitesmoke;
+            transform: translate(-50%, -50%);
+            font-size: 20px;
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            text-align: center;
+        }
+
+        /* configuracion de el section*/
+        section {
+            text-align: center;
+            text-decoration: none;
+            margin-top: 50px;
+        }
+
+        div.gallery {
+            border: 1px solid #ccc;
+        }
+
+        div.gallery:hover {
+            border: 1px solid #777;
+        }
+
+        div.gallery img {
+            width: 100%;
+            height: auto;
+        }
+
+        div.desc {
+            padding: 15px;
+            text-align: center;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .responsive {
+            padding: 0 30px;
+            float: left;
+            width: 24.99999%;
+        }
+
+        aside {
+            text-align: left;
+            text-decoration: none;
+            font-size: 25px;
+            float: left;
+        }
+
+        /* css del aprende con nosotros */
+        .recipe {
+            float: inline-start;
+            max-width: 20%;
+            padding: 0 55px;
+            margin-right: 5%;
+        }
+    </style>
+</head>
+<body>
+
+<div class="menup">
+    <ul>
+        <div class="menup2"><li><a class="active" href="pagina_principal.html">Home</a></li></div>
+        <div class="menup2"><li><a href="pagina_menu.html">Menu</a></li></div>
+        <div class="menup3"><li><a href="sign_in.php">SIGN IN</a></li></div>
+    </ul>
+</div>
+
+<img class="menu" src="portada.jpg">
+<div class="center">NOMBRE_RESTAURANTE</div>
+<div class="text">[description][description][description][description]</div>
+<a href="pagina_menu.html" class="button">MENU</a>
+
+<section>
+    <h2 style="font-size: 35px;">PLATOS ESTRELLA</h2>
+    <p>[description][description][description][description]</p>
+
+    <div class="responsive">
+        <div class="gallery">
+            <div class="menu">
+                <a target="_blank" href="img2.jpg">
+                    <img src="img2.jpg" alt="Cinque Terre" width="600" height="400">
+                </a>
+            </div>
+            <div class="desc">Nombre y descripcion del plato</div>
+        </div>
+    </div>
+
+    <div class="responsive">
+        <div class="gallery">
+            <div class="menu">
+                <a target="_blank" href="img4.jpg">
+                    <img src="img4.jpg" alt="Forest" width="600" height="400">
+                </a>
+            </div>
+            <div class="desc">Nombre y descripcion del plato</div>
+        </div>
+    </div>
+
+    <div class="responsive">
+        <div class="gallery">
+            <div class="menu">
+                <a target="_blank" href="img3.jpg">
+                    <img src="img3.jpg" alt="Northern Lights" width="600" height="400">
+                </a>
+            </div>
+            <div class="desc">Nombre y descripcion del plato</div>
+        </div>
+    </div>
+
+    <div class="responsive">
+        <div class="gallery">
+            <div class="menu">
+                <a target="_blank" href="img5.jpg">
+                    <img src="img5.jpg" alt="Mountains" width="600" height="400">
+                </a>
+            </div>
+            <div class="desc">Nombre y descripcion del plato</div>
+        </div>
+    </div>
+
+</section>
+</body>
+</html>

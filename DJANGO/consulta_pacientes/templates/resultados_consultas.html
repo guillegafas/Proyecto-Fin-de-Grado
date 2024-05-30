@@ -1,0 +1,24 @@
+<!-- consulta_pacientes/templates/resultados_consultas.html -->
+<h2>Consultas para {{ paciente.nombre }}</h2>
+
+{% if consultas %}
+    <table>
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Médico</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for consulta in consultas %}<tr>
+        <td>{{ consulta.fecha_consulta|date:"Y-m-d" }} {{ consulta.fecha_consulta|time:"H:i:s" }}</td>
+        <td>{{ consulta.id_medico.id_medico }}</td>
+        <td>{{ consulta.observaciones }}</td>
+    </tr>
+{% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No hay consultas para este paciente.</p>
+{% endif %}
